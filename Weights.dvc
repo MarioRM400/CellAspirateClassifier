@@ -1,6 +1,25 @@
 outs:
-- md5: 7bcbcb7625cf995833799e95ba1590a4.dir
-  size: 434065666
-  nfiles: 3
-  hash: md5
+- hash: md5
   path: Weights
+  files:
+  - relpath: aspiration_v2.pt
+    md5: 5033a3e654404afd6426462bca1a90d5
+    size: 170600193
+    cloud:
+      storage:
+        etag: 08cfbbc0d5d0b385031001
+        version_id: '1712614093626831'
+  - relpath: detector.pt
+    md5: fbcdc4afb32915fd1ba45e85c79f9d93
+    size: 92865280
+    cloud:
+      storage:
+        etag: 08ccb9b7cad0b385031001
+        version_id: '1712614070410444'
+  - relpath: oocyte_maturity_clf-pre.pt
+    md5: 410c68f7e9c979b86f78f7a2d07e66e7
+    size: 170600193
+    cloud:
+      storage:
+        etag: 089ffbead5d0b385031001
+        version_id: '1712614094323103'
