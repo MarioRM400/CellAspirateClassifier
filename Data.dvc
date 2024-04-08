@@ -1,0 +1,81 @@
+outs:
+- hash: md5
+  path: Data
+  files:
+  - relpath: data.zip
+    md5: 5ec47ec277c5ead418dc050678c57d95
+    size: 127070642
+    cloud:
+      storage:
+        etag: 089ad2b9b5d0b385031001
+        version_id: '1712614026406170'
+  - relpath: runs/train/1/last.pt
+    md5: 915ce661ccf838399939aee22482b3b5
+    size: 170600193
+    cloud:
+      storage:
+        etag: 08beb98fd4d0b385031001
+        version_id: '1712614090726590'
+  - relpath: runs/train/1/train.csv
+    md5: b0ec1e290a2378ea92587cda0f78456a
+    size: 10054
+    cloud:
+      storage:
+        etag: 089f9edcb5d0b385031001
+        version_id: '1712614026972959'
+  - relpath: runs/train/1/train.jpg
+    md5: a1551b8c364bb8a768145f04485c93ec
+    size: 67798
+    cloud:
+      storage:
+        etag: 08afabe3b5d0b385031001
+        version_id: '1712614027089327'
+  - relpath: runs/train/2/best.pt
+    md5: 5033a3e654404afd6426462bca1a90d5
+    size: 170600193
+    cloud:
+      storage:
+        etag: 08ceb7c1d4d0b385031001
+        version_id: '1712614091545550'
+  - relpath: runs/train/2/last.pt
+    md5: 83ea7149fe93ae4da2cbe55dfffc0250
+    size: 170600193
+    cloud:
+      storage:
+        etag: 0899cb91d6d0b385031001
+        version_id: '1712614094955929'
+  - relpath: runs/train/2/train.csv
+    md5: 947942579216d88d8e03d80716af0bab
+    size: 4103
+    cloud:
+      storage:
+        etag: 08e9abddb5d0b385031001
+        version_id: '1712614026991081'
+  - relpath: runs/train/2/train.jpg
+    md5: 7e7e7b99000e2fd0b3eda74bd8b7b8f1
+    size: 63029
+    cloud:
+      storage:
+        etag: 0893d8e3b5d0b385031001
+        version_id: '1712614027095059'
+  - relpath: test/0/CP001-P038-1B~C-P2_video_3-dish-2_frame_2583-pipette.jpg
+    md5: de43d2faa23097b88917b0d004525fb1
+    size: 36137
+    cloud:
+      storage:
+        etag: 08ea9ee0b5d0b385031001
+        version_id: '1712614027038570'
+  - relpath: test/1/CP001-P038-1B~C-P2_video_3-dish-1_frame_863-pipette.jpg
+    md5: 9a16f3654a8000c135d943f6801c4ed6
+    size: 28834
+    cloud:
+      storage:
+        etag: 089185cdb5d0b385031001
+        version_id: '1712614026723985'
+  - relpath: test/CP001-P038-1B~C-P2_video_3-dish-1_frame_863.jpg
+    md5: 44813a3c3e8f76f2bf64ffbda6be75bb
+    size: 98041
+    cloud:
+      storage:
+        etag: 08a081d4b5d0b385031001
+        version_id: '1712614026838176'
