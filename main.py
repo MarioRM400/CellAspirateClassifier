@@ -83,11 +83,11 @@ def get_pipette_tip(bbxs):
     Returns:
         list or None: The bounding box coordinates [x_min, y_min, x_max, y_max] if the pipette tip is found in the bounding boxes, otherwise returns None.
     """
-
     for bbx in range(len(bbxs)):
         x_min, y_min, x_max, y_max, conf, class_n, class_name = bbxs[bbx]  
         if class_name == 'pipette_tip':
             return [int(x_min), int(y_min), int(x_max), int(y_max)]
+        
 
 
 def get_aspiration_status(image_dir,
@@ -114,18 +114,29 @@ def get_aspiration_status(image_dir,
     """
 
     img = cv2.imread(image_dir)
+    h, w = img.shape[:2]
     # rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-    
     detections = det_model(img) 
     bbxs = detections.pandas().xyxy[0]
     bbxs = bbxs.values.tolist()
+    pipette_tip_bbx = get_pipette_tip(bbxs)
+
     try:
-        pipette_tip_bbx = get_pipette_tip(bbxs)
         pipette_tip_bbx = [pipette_tip_bbx[0] - 250,
-                        pipette_tip_bbx[1] - 250,
-                        pipette_tip_bbx[2] + 250,
-                        pipette_tip_bbx[3] + 250]
+                            pipette_tip_bbx[1] - 250,
+                            pipette_tip_bbx[2] + 250,
+                            pipette_tip_bbx[3] + 250]
+    
+
+        # return [int(x_min), int(y_min), int(x_max), int(y_max)]
+        if pipette_tip_bbx[0] < 0:
+            pipette_tip_bbx[0] = 0
+        if pipette_tip_bbx[1] < 0:
+            pipette_tip_bbx[1] = 0
+        if pipette_tip_bbx[2] > w:
+            pipette_tip_bbx[2] = w
+        if pipette_tip_bbx[3] > h:
+            pipette_tip_bbx[3] = h
 
 
         crop = img[pipette_tip_bbx[1]:pipette_tip_bbx[-1], pipette_tip_bbx[0]:pipette_tip_bbx[2]]
@@ -157,15 +168,15 @@ def get_aspiration_status(image_dir,
         if label == 1:
             msg = 'the coc has been aspirated'
             destine_crop_image = os.path.join(out_path,
-                                              "1",
-                                          image_name.split(".")[0] + "-pipette" + ".jpg")
+                                                "1",
+                                            image_name.split(".")[0] + "-pipette" + ".jpg")
             cv2.imwrite(destine_crop_image, crop)
             
         elif label == 0:
             msg = 'the coc still out of the pipette'
             destine_crop_image = os.path.join(out_path,
-                                              "0",
-                                          image_name.split(".")[0] + "-pipette" + ".jpg")
+                                                "0",
+                                            image_name.split(".")[0] + "-pipette" + ".jpg")
             cv2.imwrite(destine_crop_image, crop)
 
         # Saves the predicted label to a text file
@@ -176,8 +187,12 @@ def get_aspiration_status(image_dir,
         print('Done')
 
         return label
+    
     except Exception as e:
         print(e)
+        print("No PIPETTE in the image")
+    # except Exception as e:
+        # print(e)
 
 
 
@@ -203,7 +218,8 @@ if __name__ == '__main__':
     # image_name = random.choice(images_list)
     
     # joinn the path where the image is located and the image name 
-    image_name = "CP001-P038-1B~C-P2_video_3-dish-1_frame_863.jpg"
+    # image_name = "CP001-P038-1B~C-P2_video_3-dish-1_frame_863.jpg"
+    image_name = "test7.jpg"
     image_dir = os.path.join(images_path, 
                     image_name)
     # load models 
